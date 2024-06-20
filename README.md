@@ -1,14 +1,14 @@
 <em> # Conversor de Monedas </em>
 
 ## Indice
-* Descripción del Proyecto:
+# Descripción del Proyecto:
   Este es un Conversor de monedas usando el API ExchangeRape para realizar las solicitudes de las tasas de cambio.
-  Este permite genera un archivo del historial de las conversiones realizadas.
+ Al finalizar su uso genera un archivo .json con el historial de las conversiones realizadas.
   
-* Estado del proyecto
+# Estado del proyecto:
   🚧 En desarrollo 🚧
   
-* Caracteristicas y funciones
+# Caracteristicas y funciones
   A continuacion se muestra el menu del conversor de monedas, el cual muestra varias opciones:
 ![Menu conversor](https://github.com/keatnis/currency-coverter/assets/95552515/fd71e44e-99c2-422f-96b9-b944421b9013)
    La primera opcion del menu permite realizar conversiones de monedas predefinidas, al pulsar 1 del menu se muestra  un submenu en el cual se puede elegir  el tipo de monedas se va realizar la conversion     y el monto que se quiere convertir.
