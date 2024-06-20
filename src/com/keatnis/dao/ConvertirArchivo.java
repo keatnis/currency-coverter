@@ -1,38 +1,62 @@
 package com.keatnis.dao;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.google.gson.*;
 
-import com.keatnis.mod.MonedaAPI;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Scanner;
 
+
 public class ConvertirArchivo {
-    Gson gson = new GsonBuilder()
-            .setPrettyPrinting()
-            .create();
 
-    public void saveDataConverter(MonedaAPI monedaAPI) throws IOException {
 
-        FileWriter fileWriter = new FileWriter("historial.json");
-        fileWriter.write(gson.toJson(monedaAPI));
-        fileWriter.close();
+    public void guardarConversiones(List<Converter> converter) {
+        Gson gson = new GsonBuilder()
+                .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeTypeAdapter())
+
+                .setPrettyPrinting()
+                .create();
+        try {
+            FileWriter fileWriter = new FileWriter("historial.json");
+            gson.toJson(converter, fileWriter);
+            fileWriter.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
-    public void leerArchivo() {
-        File myObj = new File("src/currency.json");
-        Scanner myReader = null;
+    public void leerArchivo(String url) {
+        File archivo = new File(url);
+
         try {
-            myReader = new Scanner(myObj);
-            while (myReader.hasNextLine()) {
-                String data = myReader.nextLine();
-                System.out.println(data);
+            Scanner scanner = new Scanner(archivo);
+            while (scanner.hasNextLine()) {
+                System.out.println(scanner.nextLine());
             }
-            myReader.close();
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    //metodo para leer un archivo json
+    public void leerArchivoJSON() {
+
+        JsonParser parser = new JsonParser();
+        FileReader fr;
+
+        try {
+            fr = new FileReader("src/currency.json");
+            JsonElement datos = parser.parse(fr);
+
+            JsonObject jobject = datos.getAsJsonObject();
+            JsonArray arrayMonedas = jobject.getAsJsonArray("supported_codes");
+            for (JsonElement cadena : arrayMonedas) {
+                System.out.println("codigo: " +
+                        cadena.getAsJsonArray().get(0) + " nombre moneda \t" + cadena.getAsJsonArray().get(1));
+            }
 
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);

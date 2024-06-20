@@ -1,85 +1,56 @@
 package com.keatnis.dao;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.keatnis.connection.APIConnection;
 import com.keatnis.mod.MonedaAPI;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDateTime;
 
 public class Converter {
 
-    private double amount;
-    private String currencyCodeFrom;
-    private String currencyCodeTo;
-    private double conversionResult;
-    private List<Converter> converterList = new ArrayList<>();
+    double amount;
+    String currencyCodeFrom;
+    String currencyCodeTo;
+    double conversionResult;
+    LocalDateTime dateTime;
+    private APIConnection apiConnection;
 
-    Gson gson = new GsonBuilder()
-            .setPrettyPrinting()
-            .create();
-    APIConnection apiConnection = new APIConnection();
-    ConvertirArchivo convertirArchivo = new ConvertirArchivo();
-
-    public Converter() {
-    }
 
     public Converter(MonedaAPI monedaAPI) {
-
         this.currencyCodeFrom = monedaAPI.base_code();
         this.currencyCodeTo = monedaAPI.target_code();
         this.conversionResult = monedaAPI.conversion_result();
+        this.amount = getAmount();
+        this.dateTime = getDateTime();
 
     }
 
-    public Converter convertirMoneda(String from, String to, double amount) {
+    public Converter() {
+        this.apiConnection = new APIConnection();
+    }
 
-        // se valida si moneda es convertida correctamente para agregarlo a la lista
+
+    public Converter realizarConversion(String from, String to, double amount) {
+
+        // se ejecuta el api con los datos proporcionados
         Converter miConvertidor = null;
         if (from.length() < 4 && to.length() < 4) {
-            String json = apiConnection.ApiResponse(from, to, amount);
-            MonedaAPI monedaAPI = gson.fromJson(json, MonedaAPI.class);
+            MonedaAPI monedaAPI = apiConnection.ApiResponse(from, to, amount);
             miConvertidor = new Converter(monedaAPI);
-            mostrarRespuesta(miConvertidor, amount);
-//            try {
-//                generarArchivo.saveDataConverter(monedaAPI);
-//            } catch (IOException e) {
-//                System.out.println(e.getMessage());
-//                throw new RuntimeException(e);
-//            }
-            this.converterList.add(miConvertidor);
+            miConvertidor.setAmount(amount);
+            System.out.println(mostrarRespuesta(miConvertidor));
 
         } else {
-            System.out.println("Codigo de moneda incompleto, se aceptan 3 letras");
-        }
+            System.out.println("Error: codigo de moneda incorrecto");
 
+        }
         return miConvertidor;
+
     }
 
-    public void gethistorial() {
-        System.out.println("Conversiones realizadas");
-        //Collections.sort;
-        for (Converter moneda : getConverterList()) {
-            System.out.println(" Valor convertido: " + moneda.conversionResult+" Desde: " + moneda.currencyCodeFrom + "a: " + moneda.currencyCodeTo );
-        }
-    }
-
-    public String mostrarRespuesta(Converter converter, double amount) {
-        String result = " El valor de " + amount + " [" + converter.currencyCodeFrom + "] " + " corresponde al valor final ===> " +
+    private String mostrarRespuesta(Converter converter) {
+        String result = " El valor de " + converter.amount + " [" + converter.currencyCodeFrom + "] " + " corresponde al valor final ===> " +
                 converter.conversionResult + " [" + converter.currencyCodeTo + "]";
-        System.out.println(result);
         return result;
-    }
-
-
-
-    public List<Converter> getConverterList() {
-        return converterList;
-    }
-
-    public void setConverterList(List<Converter> converterList) {
-        this.converterList = converterList;
     }
 
     public double getAmount() {
@@ -90,36 +61,27 @@ public class Converter {
         this.amount = amount;
     }
 
-    public String getCurrencyCodeFrom() {
-        return currencyCodeFrom;
+
+    public LocalDateTime getDateTime() {
+
+        return LocalDateTime.now();
     }
 
-    public void setCurrencyCodeFrom(String currencyCodeFrom) {
-        this.currencyCodeFrom = currencyCodeFrom;
-    }
+    public void setDateTime(LocalDateTime dateTime) {
+        this.dateTime = dateTime;
 
-    public String getCurrencyCodeTo() {
-        return currencyCodeTo;
-    }
-
-    public void setCurrencyCodeTo(String currencyCodeTo) {
-        this.currencyCodeTo = currencyCodeTo;
-    }
-
-    public double getConversionResult() {
-        return conversionResult;
-    }
-
-    public void setConversionResult(double conversionResul) {
-        this.conversionResult = conversionResul;
     }
 
     @Override
     public String toString() {
-        return "Converter{" +
-                "amount=" + amount +
-                ", currencyCodeFrom='" + currencyCodeFrom + '\'' +
-                ", currencyCodeTo='" + currencyCodeTo + '\'' +
+
+        return "Conversion {" +
+                "valor=" + amount +
+                ", de ='" + currencyCodeFrom + '\'' +
+                ", a ='" + currencyCodeTo + '\'' +
+                ", total ='" + conversionResult + '\'' +
+                ", fecha ='" + dateTime + '\'' +
                 '}';
+
     }
 }
