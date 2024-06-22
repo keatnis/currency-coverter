@@ -30,7 +30,7 @@ public class HistorialConversion {
         for (Converter moneda : converterList ) {
             System.out.println("Valor: " + moneda.amount + " \tDesde: " + moneda.currencyCodeFrom +
                     "\ta: " + moneda.currencyCodeTo + " ===> \t" + moneda.conversionResult
-                    + "  \tFecha y hora de conversion: " + moneda.dateTime.format(formatter));
+                    + "  \t Fecha y hora de conversion: " + moneda.dateTime.format(formatter));
 
         }
     }

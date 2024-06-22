@@ -11,12 +11,12 @@ import java.net.http.HttpResponse;
 
 public class APIConnection {
 
-    String APIKEY = "050ca4fb6f2e015b6711d338";
-    String URL = "https://v6.exchangerate-api.com/v6/";
+    private final String API_KEY = "050ca4fb6f2e015b6711d338";
+    private final String URL_BASE = "https://v6.exchangerate-api.com/v6/";
 
 
     public MonedaAPI ApiResponse(String from, String to, double amount) {
-        URI uri = URI.create(URL + APIKEY + "/pair/" + from + "/" + to + "/" + amount);
+        URI uri = URI.create(URL_BASE + API_KEY + "/pair/" + from + "/" + to + "/" + amount);
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()

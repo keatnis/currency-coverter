@@ -1,16 +1,16 @@
 [
   {
-    "amount": 80.0,
-    "currencyCodeFrom": "MXN",
+    "amount": 1000.0,
+    "currencyCodeFrom": "ARS",
     "currencyCodeTo": "USD",
-    "conversionResult": 4.3408,
-    "dateTime": "19-06-2024 22:47:43"
+    "conversionResult": 1.104,
+    "dateTime": "20-06-2024 00:34:40"
   },
   {
-    "amount": 80.0,
-    "currencyCodeFrom": "USD",
+    "amount": 2584.0,
+    "currencyCodeFrom": "BRL",
     "currencyCodeTo": "MXN",
-    "conversionResult": 1474.28,
-    "dateTime": "19-06-2024 22:48:36"
+    "conversionResult": 8731.5944,
+    "dateTime": "20-06-2024 00:39:19"
   }
 ]

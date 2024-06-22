@@ -8,9 +8,9 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Menu {
-    private final ConvertirArchivo convertirArchivo = new ConvertirArchivo();
-    private final Converter converter = new Converter();
-    private final HistorialConversion historialConversion = new HistorialConversion();
+    private  ConvertirArchivo convertirArchivo = new ConvertirArchivo();
+    private  Converter converter = new Converter();
+    private  HistorialConversion historialConversion = new HistorialConversion();
 
     public Menu() {
 
@@ -108,7 +108,7 @@ public class Menu {
                 4. BRL - Real brasileño       ==> USD - Dólar estadounidense
                 5. USD - Dólar estadounidense ==> MXN - Peso Mexicano
                 6. MXN - Peso Mexicano        ==> USD - Dólar estadounidense
-                7. Regresar al menu ptincipal               
+                7. Regresar al menu principal               
                 Seleccione una opcion valida: """;
 
         int opcion = 0;
