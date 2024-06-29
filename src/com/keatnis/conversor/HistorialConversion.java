@@ -1,4 +1,6 @@
-package com.keatnis.dao;
+package com.keatnis.conversor;
+
+import com.keatnis.model.Converter;
 
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -28,9 +30,9 @@ public class HistorialConversion {
         System.out.println(" ---- ** Conversiones realizadas ** ---- \n");
 
         for (Converter moneda : converterList ) {
-            System.out.println("Valor: " + moneda.amount + " \tDesde: " + moneda.currencyCodeFrom +
-                    "\ta: " + moneda.currencyCodeTo + " ===> \t" + moneda.conversionResult
-                    + "  \t Fecha y hora de conversion: " + moneda.dateTime.format(formatter));
+            System.out.println("Valor: " + moneda.getAmount() + " \tDesde: " + moneda.getCurrencyCodeFrom() +
+                    "\ta: " + moneda.getCurrencyCodeTo() + " ===> \t" + moneda.getCurrencyCodeTo()
+                    + "  \t Fecha y hora de conversion: " + moneda.getDateTime().format(formatter));
 
         }
     }

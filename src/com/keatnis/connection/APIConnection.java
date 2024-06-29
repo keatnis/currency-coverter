@@ -2,7 +2,7 @@ package com.keatnis.connection;
 
 import com.google.gson.Gson;
 import com.keatnis.exception.RuntimeExceptionAPIConnection;
-import com.keatnis.mod.MonedaAPI;
+import com.keatnis.model.MonedaAPI;
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;

@@ -1,6 +1,4 @@
-package com.keatnis.mod;
-
-import com.google.gson.annotations.SerializedName;
+package com.keatnis.model;
 
 public class Moneda {
 

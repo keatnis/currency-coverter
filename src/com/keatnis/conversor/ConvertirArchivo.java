@@ -1,6 +1,7 @@
-package com.keatnis.dao;
+package com.keatnis.conversor;
 
 import com.google.gson.*;
+import com.keatnis.model.Converter;
 
 import java.io.*;
 import java.time.LocalDateTime;

@@ -1,7 +1,6 @@
-package com.keatnis.dao;
+package com.keatnis.model;
 
 import com.keatnis.connection.APIConnection;
-import com.keatnis.mod.MonedaAPI;
 
 import java.time.LocalDateTime;
 
@@ -82,5 +81,29 @@ public class Converter {
                 ", fecha ='" + dateTime + '\'' +
                 '}';
 
+    }
+
+    public String getCurrencyCodeFrom() {
+        return currencyCodeFrom;
+    }
+
+    public void setCurrencyCodeFrom(String currencyCodeFrom) {
+        this.currencyCodeFrom = currencyCodeFrom;
+    }
+
+    public String getCurrencyCodeTo() {
+        return currencyCodeTo;
+    }
+
+    public void setCurrencyCodeTo(String currencyCodeTo) {
+        this.currencyCodeTo = currencyCodeTo;
+    }
+
+    public double getConversionResult() {
+        return conversionResult;
+    }
+
+    public void setConversionResult(double conversionResult) {
+        this.conversionResult = conversionResult;
     }
 }

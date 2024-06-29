@@ -1,8 +1,8 @@
-package com.keatnis.mod;
+package com.keatnis.main;
 
-import com.keatnis.dao.Converter;
-import com.keatnis.dao.ConvertirArchivo;
-import com.keatnis.dao.HistorialConversion;
+import com.keatnis.model.Converter;
+import com.keatnis.conversor.ConvertirArchivo;
+import com.keatnis.conversor.HistorialConversion;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
